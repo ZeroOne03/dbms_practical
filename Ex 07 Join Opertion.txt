@@ -1,0 +1,140 @@
+1)
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100),
+    age INT,
+    gender VARCHAR(10),
+    enrollment_date DATE,
+    GPA DECIMAL(3,1)
+);
+
+desc students; 
+-----------------------------------
+| Column        | Data Type        |
+-----------------------------------
+| student_id    | INT (Primary Key)|
+| first_name    | VARCHAR(50)      |
+| last_name     | VARCHAR(50)      |
+| email         | VARCHAR(100)     |
+| age           | INT              |
+| gender        | VARCHAR(10)      |
+| enrollment_date| DATE             |
+| GPA           | DECIMAL(3,1)     |
+-----------------------------------
+
+2)
+INSERT INTO students (student_id, first_name, last_name, email, age, gender, enrollment_date, GPA)
+VALUES
+(1, 'John', 'Doe', 'john.doe@example.com', 20, 'Male', '2021-08-15', 3.5),
+(2, 'Jane', 'Smith', 'jane.smith@example.com', 22, 'Female', '2021-08-15', 3.7),
+(3, 'Alice', 'Johnson', 'alice.johnson@example.com', 21, 'Female', '2021-08-15', 3.9),
+(4, 'Bob', 'Brown', 'bob.brown@example.com', 23, 'Male', '2021-08-15', 3.2),
+(5, 'Chris', 'Davis', 'chris.davis@example.com', 24, 'Male', '2021-08-15', 3.6);
+
+select * from students;
+-------------------------------------------------------------------------
+| student_id | first_name | last_name | email                  | age | gender | enrollment_date | GPA |
+-------------------------------------------------------------------------
+| 1          | John       | Doe       | john.doe@example.com   | 20  | Male   | 2021-08-15      | 3.5 |
+| 2          | Jane       | Smith     | jane.smith@example.com | 22  | Female | 2021-08-15      | 3.7 |
+| 3          | Alice      | Johnson   | alice.johnson@example.com | 21 | Female | 2021-08-15   | 3.9 |
+| 4          | Bob        | Brown     | bob.brown@example.com  | 23  | Male   | 2021-08-15      | 3.2 |
+| 5          | Chris      | Davis     | chris.davis@example.com| 24  | Male   | 2021-08-15      | 3.6 |
+-------------------------------------------------------------------------
+
+3)
+CREATE TABLE subjects (
+    subject_id INT PRIMARY KEY,
+    subject_name VARCHAR(100));
+
+INSERT INTO subjects (subject_id, subject_name)
+VALUES
+(1, 'Mathematics'),
+(2, 'Physics'),
+(3, 'Chemistry'),
+(4, 'Biology'),
+(5, 'History');
+
+select * from subjects;
+-------------------------
+| subject_id | subject_name |
+-------------------------
+| 1          | Mathematics  |
+| 2          | Physics      |
+| 3          | Chemistry    |
+| 4          | Biology      |
+| 5          | History      |
+-------------------------
+
+VARIOUS JOIN OPERATIONS BETWEEN STUDENTS AND SUBJECT TABLE
+
+4)
+SELECT students.first_name, students.last_name, subjects.subject_name
+FROM students
+INNER JOIN subjects ON students.student_id = subjects.subject_id;
+
+---------------------------------
+| first_name | last_name | subject_name |
+---------------------------------
+| John       | Doe       | Mathematics  |
+| Jane       | Smith     | Physics      |
+| Alice      | Johnson   | Chemistry    |
+| Bob        | Brown     | Biology      |
+| Chris      | Davis     | History      |
+---------------------------------
+
+5)
+SELECT students.first_name, students.last_name, subjects.subject_name
+FROM students
+LEFT JOIN subjects ON students.student_id = subjects.subject_id;
+
+---------------------------------
+| first_name | last_name | subject_name |
+---------------------------------
+| John       | Doe       | Mathematics  |
+| Jane       | Smith     | Physics      |
+| Alice      | Johnson   | Chemistry    |
+| Bob        | Brown     | Biology      |
+| Chris      | Davis     | History      |
+---------------------------------
+
+6)
+SELECT students.first_name, students.last_name, subjects.subject_name
+FROM students
+RIGHT JOIN subjects ON students.student_id = subjects.subject_id;
+
+---------------------------------
+| first_name | last_name | subject_name |
+---------------------------------
+| John       | Doe       | Mathematics  |
+| Jane       | Smith     | Physics      |
+| Alice      | Johnson   | Chemistry    |
+| Bob        | Brown     | Biology      |
+| Chris      | Davis     | History      |
+---------------------------------
+
+7)
+SELECT students.first_name, students.last_name, subjects.subject_name
+FROM students
+FULL JOIN subjects ON students.student_id = subjects.subject_id;
+
+---------------------------------
+| first_name | last_name | subject_name |
+---------------------------------
+| John       | Doe       | Mathematics  |
+| Jane       | Smith     | Physics      |
+| Alice      | Johnson   | Chemistry    |
+| Bob        | Brown     | Biology      |
+| Chris      | Davis     | History      |
+---------------------------------
+
+
+
+
+
+
+
+
+

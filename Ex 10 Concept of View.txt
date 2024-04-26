@@ -1,0 +1,45 @@
+
+1)
+CREATE TABLE medicine (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    manufacturer VARCHAR(255),
+    dosage VARCHAR(50),
+    price DECIMAL(10, 2)
+);
+
+INSERT INTO medicine (name, manufacturer, dosage, price) 
+VALUES 
+('Medicine A', 'Manufacturer X', '10mg', 15.99),
+('Medicine B', 'Manufacturer Y', '5mg', 10.50),
+('Medicine C', 'Manufacturer Z', '20mg', 25.75);
+
+SELECT * FROM medicine;
+
++----+------------+----------------+--------+-------+
+| id | name       | manufacturer   | dosage | price |
++----+------------+----------------+--------+-------+
+|  1 | Medicine A | Manufacturer X | 10mg   | 15.99 |
+|  2 | Medicine B | Manufacturer Y | 5mg    | 10.50 |
+|  3 | Medicine C | Manufacturer Z | 20mg   | 25.75 |
++----+------------+----------------+--------+-------+
+
+2) SIMPLE VIEW 
+
+CREATE VIEW medicine_summary_view AS
+SELECT name, manufacturer, price
+FROM medicine;
+
+SELECT * FROM medicine_summary_view;
+
++------------+----------------+-------+
+| name       | manufacturer   | price |
++------------+----------------+-------+
+| Medicine A | Manufacturer X | 15.99 |
+| Medicine B | Manufacturer Y | 10.50 |
+| Medicine C | Manufacturer Z | 25.75 |
++------------+----------------+-------+
+
+
+
+

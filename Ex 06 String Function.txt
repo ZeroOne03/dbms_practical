@@ -1,0 +1,207 @@
+mysql> create table marksheet(sub_id int(10) primary key,sub_name varchar(20),marks int(10) not null);
+Query OK, 0 rows affected, 2 warnings (1.13 sec)
+
+mysql> desc marksheet;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sub_id   | int         | NO   | PRI | NULL    |       |
+| sub_name | varchar(20) | YES  |     | NULL    |       |
+| marks    | int         | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into marksheet values(001,"mathematics",71);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into marksheet values(002,"python",60);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into marksheet values(002,"dbms",50);
+ERROR 1062 (23000): Duplicate entry '2' for key 'marksheet.PRIMARY'
+
+mysql> insert into marksheet values(003,"os",65);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into marksheet values(004,"PHYSICS",45);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into marksheet values(005,"CHEMISTRY",56);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from marksheet;
++--------+-----------+-------+
+| sub_id | sub_name   | marks |
++--------+-----------+-------+
+|      1 | mathematics|    56 |
+|      2 | python     |    60 |
+|      3 | dbms       |    28 |
+|      4 | PHYSICS    |    45 |
+|      5 | CHEMISTRY  |    56 |
++--------+-----------+-------+
+5 rows in set (0.00 sec)
+
+AGGREGATE FUNCTIONS
+
+mysql> SELECT AVG(marks) from marksheet;
++------------+
+| AVG(marks) |
++------------+
+|    49.0000 |
++------------+
+1 row in set (0.00 sec)
+SELECT min(marks) from marksheet;
++------------+
+| min(marks) |
++------------+
+|         28 |
++------------+
+1 row in set (0.00 sec)
+mysql> SELECT max(marks) from marksheet;
++------------+
+| max(marks) |
++------------+
+|         60 |
++------------+
+1 row in set (0.01 sec)
+mysql> SELECT count(marks) from marksheet;
++--------------+
+| count(marks) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.00 sec)
+mysql> SELECT sum(marks) from marksheet;
++------------+
+| sum(marks) |
++------------+
+|        245 |
++------------+
+1 row in set (0.00 sec)
+
+MATH FUNCTIONS
+
+mysql> select power(2,8) from dual;
++------------+
+| power(2,8) |
++------------+
+|        256 |
++------------+
+1 row in set (0.01 sec)
+mysql> select sqrt(16) from dual;
++----------+
+| sqrt(16) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+mysql> select abs(-11) from dual;
++----------+
+| abs(-11) |
++----------+
+|       11 |
++----------+
+1 row in set (0.00 sec)
+mysql> select round(11.234356789) from dual;
++---------------------+
+| round(11.234356789) |
++---------------------+
+|                  11 |
++---------------------+
+1 row in set (0.00 sec)
+mysql> select round(11.234356789,2) from dual;
++-----------------------+
+| round(11.234356789,2) |
++-----------------------+
+|                 11.23 |
++-----------------------+
+1 row in set (0.00 sec)
+select greatest(1,2,3);
++-----------------+
+| greatest(1,2,3) |
++-----------------+
+|               3 |
++-----------------+
+1 row in set (0.00 sec)
+
+3) STRING FUNCTIONS
+mysql> select least(1,2,3);
++--------------+
+| least(1,2,3) |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+mysql> select lower("ZAID");
++------------------+
+| lower("ZAID")	  |
++------------------+
+| zaid             |
++------------------+
+1 row in set (0.00 sec)
+mysql> select upper("zaid");
++------------------+
+| upper("zaid") |
++------------------+
+| ZAID             |
++------------------+
+1 row in set (0.00 sec)
+mysql> select lpad("ad",4,"*") from dual;
++------------------+
+| lpad("ad",4,"*") |
++------------------+
+| **ad         	|
++------------------+
+1 row in set (0.00 sec)
+mysql> select rpad("sa",4,"*") from dual;
++------------------+
+| rpad("sa",4,"*") |
++------------------+
+| sa**         	|
++------------------+
+1 row in set (0.00 sec)
+mysql> select trim("  zaid  ") from dual;
++------------------+
+| trim("  zaid  ") |
++------------------+
+| zaid           	|
++------------------+
+1 row in set (0.00 sec)
+mysql> select ltrim("  zaid  a") from dual;
++--------------------+
+| ltrim("  zaid  a") |
++--------------------+
+| zaid  a        	|
++--------------------+
+1 row in set (0.00 sec)
+mysql> select rtrim("  zaid  ") from dual;
++-------------------+
+| rtrim("  zaid  ") |
++-------------------+
+|   zaid        	|
++-------------------+
+1 row in set (0.00 sec)
+mysql> select replace("plum","p","s") from dual;
++-------------------------+
+| replace("plum","p","s") |
++-------------------------+
+| slum                	|
++-------------------------+
+1 row in set (0.00 sec)
+mysql> select length("plum") from dual;
++----------------+
+| length("plum") |
++----------------+
+|          	4 |
++----------------+
+1 row in set (0.00 sec)
+mysql> select * from scorecard where sub_name like "%I%";
++--------+-----------+-------+
+| sub_id | sub_name  | marks |
++--------+-----------+-------+
+|  	4 | PHYSICS   |	45 |
+|  	5 | CHEMISTRY |	56 |
++--------+-----------+-------+
+2 rows in set (0.00 sec)
+
+

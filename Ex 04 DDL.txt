@@ -1,0 +1,142 @@
+aiktc@aiktc:~$ sudo mysql;
+[sudo] password for aiktc:  
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.28-0ubuntu0.20.04.3 (Ubuntu)
+
+mysql> show database;
++---------------------+
+| Database       	|
++---------------------+
+| 23DCO02         	|
+| Cadbury        	|
+| SECOMP         	|
+| SE_COMP        	|
+| Student_22CO18 	|
+| student        	|
+| sys            	|
++---------------------+
+13 rows in set (0.01 sec)
+
+mysql> use 23DCO06
+Database changed
+
+1)
+-create table student(st_id varchar(10) PRIMARY KEY, st_name varchar(10) NOT NULL, st_dob date , st_age int(5) NOT NULL,st_add varchar(10), st_mobile_number varchar(10) NOT NULL);
+-desc student;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| st_id            | varchar(10) | NO   | PRI | NULL    |       |
+| st_name          | varchar(10) | NO   |     | NULL    |       |
+| st_dob           | date        | YES  |     | NULL    |       |
+| st_age           | int         | NO   |     | NULL    |       |
+| st_add           | varchar(10) | YES  |     | NULL    |       |
+| st_mobile_number | varchar(10) | NO   |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+
+
+
+
+
+
+
+
+
+
+
+2)
+mysql> INSERT INTO student (st_id, st_name, st_dob, st_age, st_add,st_mobile_number)
+	-> VALUES
+	-> (23DCO06, Zaid, ’2004-12-22’,’19’,'123 Main St', 
+'8888899999'),
+	-> (23DCO02, 'Ahmed',’2003-12-23’,’18’,'456 Elm St', 
+'9999988888'),
+	-> (23DCO03, 'Qizar',’2004-11-07’,’19’,'789 Oak St', 
+'9999988888'),
+	-> (23DCO01, Basheer,’2003-09-12’,’19’,'321 Maple St', 
+'9292989787'),
+	-> (23DCO05, 'Umair',’2004-10-13’,’20’,'654 Pine St', 
+'9898778909'),
+	-> (23DCO06, 'Umar',’2003-12-28’,’19’,'987 Birch St', 
+'9898778909'),
+	-> (23DCO07, 'Mohit’,’2004-07-22’,’21’,'231 Cedar St', 
+'9898778909'),
+	-> (23DCO08, 'Aman',’2003-06-15’,’18’,'563 Cherry St', 
+'9898778909'),
+	-> (23DCO09, 'Ali',’2004-05-14’,’20’,'876 Walnut St', 
+'9898778909'),
+	-> (23DCO10, 'Muneer’,’2003-01-21’,’19’,'345 Linden St',
+ '9898778909');
+Query OK, 10 rows affected (0.09 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++-------------+---------------+--------------------+----------+--------------------------+--------------------------+
+|      st_id    |    st_name |        st_dob      | st_age  |         st_add             | st_mobile_number | 
++-------------+---------------+--------------------+----------+---------------------------+-------------------------+
+| 23DCO06| Zaid    | 2004-12-22|     19     | 123 Main St  |  8888899999 |
+| 23DCO02 | Ahmed     | 2003-12-23|     18     | 456 Elm St   |  9999988888 |
+| 23DCO03 | Qizar     | 2004-11-07|     19     | 789 Oak St   |  9999988888 |
+| 23DCO01|Basheer|2003-09-12|      19    | 321 Maple St |  9292989787 |
+| 23DCO05 | Umair     | 2004-10-13|      20    | 654 Pine St  |  9898778909 |
+| 23DCO06 | Umar	| 2003-12-28|     20    | 987 Birch St |  9898778909 |
+| 23DCO07 | Mohit      | 2004-07-22|     21    | 231 Cedar St |  9898778909 |
+| 23DCO08 | Aman	| 2003-06-15|     19     | 563 Cherry St|  9898778909 |
+| 23DCO09 | Ali          | 2004-05-14|      19     | 876 Walnut St|  9898778909 |
+| 23DCO10 | Muneer   | 2003-01-21|      19     | 345 Linden St|  9898778909 |
++--------------+---------------+-------------------+------------+--------------------------+-------------------------+
+
+
+
+
+
+
+
+
+
+3)
+-create table employee(emp_id varchar(10) PRIMARY KEY, emp__name varchar(10) NOT NULL,emp_dob date , emp_age int(5) NOT NULL,emp_add varchar(10), emp_mobile_number varchar(10) NOT NULL);
+- desc employee;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| emp_id            | varchar(10) | NO   | PRI | NULL    |       |
+| emp__name         | varchar(10) | NO   |     | NULL    |       |
+| emp_dob           | date        | YES  |     | NULL    |       |
+| emp_age           | int         | NO   |     | NULL    |       |
+| emp_add           | varchar(10) | YES  |     | NULL    |       |
+| emp_mobile_number | varchar(10) | NO   |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+
+4)
+- TRUNCATE TABLE employee;
+- desc employee;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| emp_id            | varchar(10) | NO   | PRI | NULL    |       |
+| emp__name         | varchar(10) | NO   |     | NULL    |       |
+| emp_dob           | date        | YES  |     | NULL    |       |
+| emp_age           | int         | NO   |     | NULL    |       |
+| emp_add           | varchar(10) | YES  |     | NULL    |       |
+| emp_mobile_number | varchar(10) | NO   |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+5)
+-drop table employee;
+- desc employee;
+ERROR 1146 (42S02): Table '23DCO06.employee' doesn't exist
+6)
+-ALTER TABLE student ADD COLUMN email varchar(50);
+mysql> desc student;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| st_id            | varchar(10) | NO   | PRI | NULL    |       |
+| st_name          | varchar(10) | NO   |     | NULL    |       |
+| st_dob           | date        | YES  |     | NULL    |       |
+| st_age           | int         | NO   |     | NULL    |       |
+| st_add           | varchar(10) | YES  |     | NULL    |       |
+| st_mobile_number | varchar(10) | NO   |     | NULL    |       |
+| email            | varchar(50) | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
